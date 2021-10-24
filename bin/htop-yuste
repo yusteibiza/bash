@@ -1,0 +1,13 @@
+#!/bin/bash
+
+EXISTE=$(which resize)
+
+if [ -f "$EXISTE" ]
+then
+    resize -s 40 140
+else
+    echo -e "\n - No se encuentra el programa 'resize', la ventana no se reajustará."
+    read
+fi
+
+htop

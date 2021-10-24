@@ -1,0 +1,37 @@
+#!/bin/bash
+
+clear
+COLS=$(tput cols) #Obtener el número de columnas de la consola
+CHAR=$1
+
+if [[ -z $1 ]] 
+then
+   CHAR="="
+fi
+
+
+echo -e "\n ...Cargando..."
+tput cup 2 1
+tput civis #Ocultar cursor
+
+for i in $(seq 1 $(($COLS-2)))
+do
+    RND=$(($RANDOM % 7))
+    #tput setaf $RND
+    printf "%s$CHAR"
+    tput sc
+    tput cup 1 $(($COLS-7))
+    
+    if [[ ! $i -eq $(($COLS-2)) ]]
+    then 
+        echo -e "($i%)"
+    else
+        echo -e "(100%)"
+    fi
+    
+    sleep 0.025
+    tput rc
+done
+
+tput cvvis #Mostrar el cursor
+echo -e "\n"

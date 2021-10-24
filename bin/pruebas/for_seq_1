@@ -1,0 +1,32 @@
+#!/bin/bash
+
+for i in 1 2 3 4 5
+do
+    echo "Repetición: $i"
+done
+
+read
+
+for i in {1..5}
+do
+    echo "Repetición: $i"
+done
+
+read
+
+#Intérvalo de dos
+for i in {2..10..2}
+do
+    echo "Repetición: $i"
+done
+
+echo -e "\nTipo lenguaje c/c++" & read
+
+#Tipo C/C++
+for (( x=1; x<=5; x++))
+do
+    echo "Repetición: $x"
+done
+
+
+

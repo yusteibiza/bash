@@ -1,0 +1,4 @@
+#/bin/bash
+
+/yuste/bin/montared //192.168.1.2/datos_usb /yuste/media/puesto1/datos_usb /yuste/claves/samba/smb.cred 2.1
+/yuste/bin/montared //192.168.1.2/backups /yuste/media/puesto1/backups /yuste/claves/samba/smb.cred 2.1

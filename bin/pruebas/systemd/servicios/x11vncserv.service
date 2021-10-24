@@ -1,0 +1,18 @@
+[Unit]
+Description=Servidor X11 VNC
+After=networking.target
+
+[Service]
+ExecStartPre=
+ExecStart=/bin/x11vnc -rfbport 5092 -passwdfile /yuste/claves/vnc/passwdvnc -loop
+#Con el pará metro -bg se consigue que al cerrar la consola el serivcio siga en marcha
+#ExecStart=/bin/x11vnc -rfbport 5092 -bg -passwdfile /yuste/claves/vnc/passwdvnc -loop
+ExecStartPost=
+Restart=always
+RestartSec=5
+TimeoutStartSec=
+TimeoutPostSec=
+TimeoutSec=1
+
+[Install]
+WantedBy=multi-user.target

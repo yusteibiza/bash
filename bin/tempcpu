@@ -1,0 +1,12 @@
+#!/bin/bash
+
+clear 
+echo -e "\nTemperatura CPU " 
+echo -e "---------------\n"
+while (true)
+do
+    tput cup 4 0
+    sensors | grep "Core "
+    echo -e "\n"
+    sleep 1
+done

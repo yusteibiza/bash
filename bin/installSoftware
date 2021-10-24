@@ -1,0 +1,74 @@
+#!/bin/bash
+
+SOFTWARE=(inxi lshw cpuinfo screenfetch neofetch smartmontools stacer atop htop ytree gpm zip arj synaptic xterm simplescreenrecorder strip dex cowsay)
+
+case $1 in
+    pacman)
+	COMANDO_ACT="pacman -Sy"
+	COMANDO_INST="pacman -S " 
+	;;
+    pamac)
+        COMANDO_ACT="pacman -Sy"
+	COMANDO_INST="pamac -S "
+	;;
+    apt)
+	COMANDO_ACT="apt update"
+	COMANDO_INST="apt install -y "
+	;;
+    apt-get)
+	COMANDO_ACT="apt-get update"
+	COMANDO_INST="apt-get install -y "
+	;;
+    dnf)
+	COMANDO_ACT="dnf update"
+	COMANDO_INST="dnf install --force "
+	;;
+    eopkg)
+	COMANDO_ACT="eopkg update"
+	COMANDO_INST="eopkg install "
+	;;
+    rpm)
+	COMANDO_ACT=
+	COMANDO_INST="rpm -i --force "
+	;;
+    dpkg)
+	COMANDO_ACT=
+	COMANDO_INST="dpkg -i --formce "
+	;;
+    *)
+	echo -e "\n - Debe de especificar un instalador de entre ...\n -> ( pacman, pamac, apt, apt-get, dnf, eopkg, dpkg )\n"
+	exit
+	;;
+esac
+
+clear
+echo -e "\e[1;33m"
+echo -e " ┌───────────────────────────────────────────────┐   "
+echo -e " │ Instalación de software post instalación S.O. │ ▓▓"
+echo -e " └───────────────────────────────────────────────┘ ▓▓"
+echo -e "   ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓\n"
+
+echo -e "\e[1;37m - Se van ha instalar [ ${#SOFTWARE[@]} ] paquetes...\n"
+
+for (( i=0; i<${#SOFTWARE[@]}; i++ ))
+do
+    echo -en "\e[1;34m${SOFTWARE[$i]}, "
+done
+
+echo -e "\e[1;36m\n"
+read -p " ¿Continuar? (S/N) .: " RES
+
+if [[ $RES == "S" || $RES == "s" ]]; then
+    $COMANDO_ACT
+
+    for s in ${SOFTWARE[*]}
+    do
+	$COMANDO_INST $s
+    done
+    
+    echo -e "\e[1;32mInstalación terminada..."
+elif [[ $RES == "N" || $RES == "n" ]]; then
+    echo -e "\e[1;31m\n - Proceso cancelado."
+fi
+
+echo -e "\e[0m"

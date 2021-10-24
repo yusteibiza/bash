@@ -1,0 +1,88 @@
+#!/bin/bash
+
+################################################################################
+#                                                                              #
+# Copia de seguridad de la carpeta de /yuste en el disco de copias del puesto2 #
+#                                                                              #
+# ...Parámetros...                                                             #
+#                                                                              #
+#    -r = recursivo, copiar archivos y subdirectorios                          #
+#    -f = fuerza a copiar sin preguntar si el destino exite                    #
+#    -u = update, solo copias los archivos más nuevos en el origen             #
+#    -a = mantiene los metaatributos, usuario, permisos, etc...                #
+#                                                                              #
+################################################################################
+
+DESTINO=$1
+
+if [[ ! -d $1 ]]
+then
+    DESTINO=/yuste/media/puesto1/backups/Linux/Puesto1/Distribuciones/SolusOS
+fi
+
+Cabecera()
+{
+    
+    echo -e "\n\e[1;39m  +-----------------------+"
+    echo -e "  |\e[1;33m  Copias de Seguridad\e[1;39m  | +"
+    echo -e "\e[1;39m  +-----------------------+ |"
+    echo -e "   +------------------------+\e[0m"
+}
+
+ConPrintf()
+{
+    printf "\e[1;34%sm\n - Haciendo copia de /yuste/* -> $DESTINO...\n"
+    printf "\e[1;35%sm ..Espere un momento..\n\n"
+    mkdir $DESTINO/yuste > /dev/null 2> /dev/null
+    printf "\e[1;32%sm - Copiando \e[1;36%sm/yuste/applications "
+    cp -rfua /yuste/applications $DESTINO/yuste
+    printf "\e[1;39%sm    <OK>\n\e[1;32%sm\e[1;32%sm - Copiando \e[1;36%sm/yuste/backups\e[0%sm"
+    cp -rfua /yuste/backups $DESTINO/yuste
+    printf "\e[1;39%sm          <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/bin\e[0%sm"
+    cp -rfua /yuste/bin $DESTINO/yuste
+    printf "\e[1;39%sm              <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/claves\e[0%sm"
+    cp -rfua /yuste/claves $DESTINO/yuste
+    printf "\e[1;39%sm           <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/Conexiones-WTS\e[0%sm"
+    cp -rfua /yuste/Conexiones-WTS $DESTINO/yuste
+    printf "\e[1;39%sm   <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/configs\e[0%sm"
+    cp -rfua /yuste/configs $DESTINO/yuste
+    printf "\e[1;39%sm          <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/downloads\e[0%sm"
+    cp -rfua /yuste/downloads $DESTINO/yuste
+    printf "\e[1;39%sm        <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/icons\e[0%sm"
+    cp -rfua /yuste/icons $DESTINO/yuste
+    printf "\e[1;39%sm            <OK>\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/systemd\e[0%sm"
+    cp -rfua /yuste/systemd $DESTINO/yuste
+    printf "\e[1;39%sm          <OK>\n\n\e[1;33%sm - Copia finalizada, pulse una tecla...\n\e[0%sm"
+}
+
+ConEcho()
+{
+    echo -e "\n- Haciendo copia de /yuste/* -> $DESTINO...\n"
+    echo -e "\e[1;34m..Espere un momento..\n"
+    mkdir $DESTINO/yuste > /dev/null 2> /dev/null
+    echo -e "\e[1;32m- Copiando /yuste/applications \e[0m"
+    cp -rfua /yuste/applications $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/backups \e[0m"
+    cp -rfua /yuste/backups $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/bin \e[0m"
+    cp -rfua /yuste/bin $DESTINO/yuste
+    echo -e "\e[1;37m      <OK>\n\n\e[1;32m- Copiando /yuste/claves \e[0m"
+    cp -rfua /yuste/claves $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/Conexiones-WTS \e[0m"
+    cp -rfua /yuste/Conexiones-WTS $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/configs \e[0m"
+    cp -rfua /yuste/configs $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/downloads \e[0m"
+    cp -rfua /yuste/downloads $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/icons \e[0m"
+    cp -rfua /yuste/icons $DESTINO/yuste
+    echo -e "\e[1;37m  <OK>\n\n\e[1;32m- Copiando /yuste/systemd \e[0m"
+    cp -rfua /yuste/systemd $DESTINO/yuste
+    echo -en "\e[1;37m  <OK>\n\n\e[1;34m- Copia finalizada, pulse una tecla...\n\e[0m "
+}
+
+clear
+#ConEcho
+Cabecera
+ConPrintf
+read

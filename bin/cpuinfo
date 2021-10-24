@@ -1,0 +1,14 @@
+#!/bin/bash
+
+clear
+
+CPUINFO=$(which cpu-info)
+COMANDO=$(eval $CPUINFO | head -n 2 | tail -n -1 | cut -d ' ' -f 2-6)
+
+if [ -f "$CPUINFO" ]; then
+    echo -e "\n ...\e[1;34mProcesador instalado\033[0m...\n\n\t -=[ \e[1;32m$COMANDO\e[0m ]=-\n\n\n\n\n"
+else
+    echo -e "\n -[ Dependencia necesaria, se necesita instalar 'cpuinfo' ]-\n\n\n\n\n"
+fi
+
+echo -e "\033[0m"

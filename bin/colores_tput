@@ -1,0 +1,9 @@
+#!/bin/bash
+
+clear
+
+for (( i=0; i<=100; i++ ))
+do
+    tput setaf $i
+    echo -e " Color .: " $i
+done

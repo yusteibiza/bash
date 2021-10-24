@@ -1,0 +1,17 @@
+[Unit]
+Description=Saludar en consola
+After=
+
+[Service]
+#User=root
+#Group=user
+#RuntimeDirectory=/mnt
+#RuntimeDirectoryMode=0700
+#RuntimeDirectoryPreserve=yes
+Type=simple
+WorkingDirectory=/yuste/bin
+ExecStart=echo -e "\n ¡¡¡ Hola, $USER !!!\n"
+Terminal=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+while (true)
+do
+    clear 
+    /yuste/bin/infoprocesador
+    sensors | grep "Core "
+    sleep 1
+done

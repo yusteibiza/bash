@@ -1,0 +1,9 @@
+#!/bin/bash
+
+clear
+TOTAL=$(ls -1aF /yuste/bin | tail -n +4 | wc -l)
+echo -e "\n- Listado de ficheros en /yuste/bin/"
+echo -e "-----------------------------------"
+ls -1aF --color /yuste/bin | tail -n +4
+echo -e "-----------------------------------"
+echo -e "- Archivos totales: $TOTAL\n"

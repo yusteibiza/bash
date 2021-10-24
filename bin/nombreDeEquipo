@@ -1,0 +1,6 @@
+#!/bin/bash
+#Le paso un comando y la variable almacena el resultado de ese comando
+NOMBRE_EQUIPO=`/bin/hostname`
+clear
+echo -e "- Nombre del equipo: " $NOMBRE_EQUIPO "\n"
+

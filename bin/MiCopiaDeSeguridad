@@ -1,0 +1,164 @@
+#!/bin/bash
+
+################################################################################
+#                                                                              #
+# Copias de seguridad de mis carpetas en Linux...                              #
+#                                                                              #
+# ...Parámetros...                                                             #
+#                                                                              #
+#    -r = recursivo, copiar archivos y subdirectorios                          #
+#    -f = fuerza a copiar sin preguntar si el destino exite                    #
+#    -u = update, solo copias los archivos más nuevos en el origen             #
+#    -a = mantiene los metaatributos, usuario, permisos, etc...                #
+#                                                                              #
+################################################################################
+
+DESTINO=$1
+SO=Fedora
+FIN=$(expr $(tput cols) - 5)
+
+if [[ ! -d $1 ]]
+then
+    DESTINO=/yuste/media/puesto1/backups/Linux/Puesto1/Distribuciones/${SO}
+fi
+
+Cabecera()
+{
+    echo -e "\n\e[1;39m  +-----------------------+"
+    echo -e "  |\e[1;33m  Copias de Seguridad\e[1;39m  | +"
+    echo -e "\e[1;39m  +-----------------------+ |"
+    echo -e "   +------------------------+\e[0m"
+}
+
+CrearDirectorios()
+{
+    mkdir -p ${DESTINO}/yuste/applications > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/backups > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/bin > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/claves > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/Conexiones-WTS > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/configs > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/downloads > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/icons > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/yuste/systemd > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Escritorio > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Documentos > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Imágenes > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Vídeos > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Descargas > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/Música > /dev/null 2> /dev/null
+    mkdir -p ${DESTINO}/home/antonioyuste/.local/share > /dev/null 2> /dev/null
+}
+
+ConPrintf()
+{
+    printf "\n\e[1;37%sm - Inicio .: \e[1;33%sm$(date +%H:%M:%S)\n"
+    printf "\e[1;34%sm\n - Copiando ${SO} en -> ${DESTINO}...\n"
+    printf "\e[1;35%sm ..Espere un momento.."
+    printf "\e[0;33%sm\n\n $(seq -s - $(expr ${FIN} + 4) | tr -d [:digit:])\n\n"
+    printf "\e[1;32%sm - Copiando \e[1;36%sm/yuste/applications "
+    cp -rfua /yuste/applications ${DESTINO}/yuste
+    tput sc
+    tput cup 13 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm\e[1;32%sm - Copiando \e[1;36%sm/yuste/backups \e[0%sm"
+    cp -rfua /yuste/backups ${DESTINO}/yuste
+    tput sc
+    tput cup 14 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/bin \e[0%sm"
+    cp -rfua /yuste/bin ${DESTINO}/yuste
+    tput sc
+    tput cup 15 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/claves \e[0%sm"
+    cp -rfua /yuste/claves ${DESTINO}/yuste
+    tput sc
+    tput cup 16 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/Conexiones-WTS \e[0%sm"
+    cp -rfua /yuste/Conexiones-WTS ${DESTINO}/yuste
+    tput sc
+    tput cup 17 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/configs \e[0%sm"
+    cp -rfua /yuste/configs ${DESTINO}/yuste
+    tput sc
+    tput cup 18 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/downloads \e[0%sm"
+    cp -rfua /yuste/downloads ${DESTINO}/yuste
+    tput sc
+    tput cup 19 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/icons \e[0%sm"
+    cp -rfua /yuste/icons ${DESTINO}/yuste
+    tput sc
+    tput cup 20 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/yuste/systemd \e[0%sm"
+    cp -rfua /yuste/systemd ${DESTINO}/yuste
+    tput sc
+    tput cup 21 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Escritorio \e[0%sm"
+    cp -rfua /home/antonioyuste/Escritorio ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 22 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Documentos \e[0%sm"
+    cp -rfua /home/antonioyuste/Documentos ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 23 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Imágenes \e[0%sm"
+    cp -rfua /home/antonioyuste/Imágenes ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 24 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Vídeos \e[0%sm"
+    cp -rfua /home/antonioyuste/Vídeos ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 25 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Descargas \e[0%sm"
+    cp -rfua /home/antonioyuste/Descargas ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 26 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/Música \e[0%sm"
+    cp -rfua /home/antonioyuste/Música ${DESTINO}/home/antonioyuste
+    tput sc
+    tput cup 27 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[1;32%sm - Copiando \e[1;36%sm/home/antonioyuste/.local/share/rhythmbox \e[0%sm"
+    cp -rfua /home/antonioyuste/.local/share/rhythmbox ${DESTINO}/home/antonioyuste/.local/share
+    tput sc
+    tput cup 27 ${FIN}
+    printf "\e[1;39%sm<OK>\n"
+    tput rc
+    printf "\n\e[0;33%sm\n $(seq -s - $(expr ${FIN} + 4) | tr -d [:digit:])\n\n"
+    printf "\e[1;37%sm - Fin .: \e[1;33%sm$(date '+%H:%M:%S')\n\n"
+    printf "\e[1;32%sm - Copia finalizada, pulse una tecla...\n\e[0%sm"
+}
+
+clear
+Cabecera
+CrearDirectorios
+ConPrintf
+read

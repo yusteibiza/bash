@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Comment=Cargar servidor XVNC
+Name=XVNC Server
+Exec=/bin/x11vnc -rfbport 5902 -loop -passwdfile /yuste/claves/vnc/passwdvnc
+#Con el parámetro -bg se consigue el al cerrar la consola el servicio siga en marcha
+#Exec=/bin/x11vnc -rfbport 5902 -bg -loop -passwdfile /yuste/claves/vnc/passwdvnc
+Icon=/usr/share/icons/Adwaita/scalable/places/network-workgroup-symbolic.svg
+Type=Application
+Terminal=true
+Categories=GTK;GNOME;Utility;Network;

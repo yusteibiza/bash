@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Declaraciones de funciones
+function MensajePermisosCambiados {
+    echo -e "\033[1;32m\n¡Permisos cambiados!         \n"
+}
+
+function MensajePermisosNoCambiados {
+    echo -e "\033[1;36m\n¡Permisos no cambiados!      \n"
+}
+
+function LimpiarPantalla {
+    #echo -e "\033[0;40m\033[0;37m"
+    clear
+}
+
+function CambiarPermisos {
+    umount --force --quiet /yuste/media/puesto1/*
+    chmod -R 755 /yuste
+    chmod -R 777 /yuste/media
+    chown -R antonioyuste:antonioyuste /yuste
+    chmod -R 644 /yuste/etc
+    chown -R root:root /yuste/etc
+}
+
+#Programa para cambiar permisos en /yuste
+LimpiarPantalla
+
+case $1 in
+    s|S)
+	CambiarPermisos
+	MensajePermisosCambiados
+    ;;
+    n|N)
+	MensajePermisosNoCambiados
+    ;;
+    *)
+	#echo -e "\033[0;40m\033[1;31mCambiando permisos en /yuste"
+	echo -e "\033[1;31mCambiando permisos en /yuste"
+	echo       ----------------------------
+	echo -e "¿Seguro? (S/N/s/n): \c"
+	read respuesta
+
+	if [ "$respuesta" = S ]; then
+	    CambiarPermisos
+	    MensajePermisosCambiados
+	elif [ "$respuesta" = s ]; then
+	    CambiarPermisos
+	    MensajePermisosCambiados
+	elif [ "$respuesta" = N ]; then
+	    MensajePermisosNoCambiados
+	elif [ "$respuesta" = n ]; then
+	    MensajePermisosNoCambiados
+	else
+	    echo -e "Elección incorrecta, se aborta el proceso."
+	fi
+    ;;
+esac
+
+echo -e "\033[0;40m\033[0;37m"
+
+exit
+
+#Esto no se ejecuta es para probar cosas, si se quiere ejecutar
+#quitar el "exit" que hay más arriba
+echo -e $1

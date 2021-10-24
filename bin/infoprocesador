@@ -1,0 +1,21 @@
+#!/bin/bash
+
+DMIDECODE=$(which dmidecode)
+PROCESADOR=$(dmidecode -t processor | grep 'core' -i -m 2 | cut -d":" -f2)
+
+clear 
+
+if [ ! -f "$DMIDECODE" ]
+then
+    tput setaf 9
+    echo -e "\n - ERROR -"
+    tput setaf 7
+    echo -e " - Se requiere 'dmidecode', instale antes este programa...\n"
+else
+    if [ ! -z "$PROCESADOR" ]
+    then
+        echo -e "\n- Información del procesador...\n\t$PROCESADOR\n" 
+    else
+        echo -e "\n- Sin información, puede ser que se esté ejecutando en una VM\n"
+    fi
+fi

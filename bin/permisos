@@ -1,0 +1,13 @@
+#!/bin/bash
+echo -e "\n -=[ Cambiando permisos en la carpeta >>> /yuste ]=-\n"
+chmod -R 755 /yuste/etc
+chmod -R 755 /yuste/systemd
+chmod -R 755 /yuste/bin
+chmod 755 /yuste/media
+chmod -R 755 /yuste/temp
+chown -R root:root /yuste/bin
+chown -R root:root /yuste/systemd
+chown -R root:root /yuste/etc
+chown -R yuste:users /yuste/temp
+chown yuste:users /yuste
+echo -e "\e[1;37m [ \e[1;32mOK \e[1;37m]\e[0m\n"

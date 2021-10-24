@@ -1,0 +1,43 @@
+#!/bin/bash
+
+INITTY=/dev/tty[0-9]
+OPCION=$1
+PS1='[\u@\h \W]\$ '
+PATH=$PATH:/yuste/bin
+
+export EDITOR="mcedit"
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
+ActivarLeds() {
+    if [ "$OPCION" = "--leds" ]
+    then
+	for tty in $INITTY
+	do
+	    setleds -D +num < $tty > /dev/null 2> /dev/null
+	done
+    fi
+}
+
+CambiarFuente() {
+    for tty in $INITTY
+    do
+        #setfont -C $tty ter-powerline-v24b.psf > /dev/null 
+        setfont -C $tty ter-v18b.psf.gz > /dev/null
+    done
+}
+
+Aliases() {
+    alias l='ls -laF --color'
+    alias cls='clear'
+    alias cd..='cd ..'
+    alias ..='cd ..'
+    alias ver='uname -a | cut -d" " -f1,3,13-15'
+    alias chkdsk='e2fsck'
+    alias move='mv'
+}
+
+Aliases
+ActivarLeds
+CambiarFuente
+
+kbdrate -r 30 -d 250 > /dev/null 2> /dev/null

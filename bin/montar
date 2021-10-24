@@ -1,0 +1,15 @@
+#!/bin/bash
+
+###########################
+#Puntos de montaje locales#
+###########################
+mount -tntfs-3g /dev/sde1	/yuste/media/datos	-o user,rw,iocharset=utf8
+mount -tntfs-3g /dev/sdi1	/yuste/media/backups	-o user,rw,iocharset=utf8
+mount -tntfs-3g /dev/sdj2	/yuste/media/varios	-o user,rw,iocharset=utf8
+
+######################################
+#Puntos de montaje en unidades de red#
+######################################
+#mount -t cifs //192.168.1.2/Datos		/yuste/media/Datos_Puesto1		-o user,rw,credentials=/yuste/etc/credenciales_cifs,workgroup=grupo,iocharset=utf8,uid=yuste,gid=users
+#mount -t cifs //192.168.1.2/Backups		/yuste/media/Backups_Puesto1		-o user,rw,credentials=/yuste/etc/credenciales_cifs,workgroup=grupo,iocharset=utf8,uid=yuste,gid=users
+#mount -t cifs //192.168.1.2/Downloads_Varios	/yuste/media/Down_Varios_Puesto1	-o user,rw,credentials=/yuste/etc/credenciales_cifs,workgroup=grupo,iocharset=utf8,uid=yuste,gid=users

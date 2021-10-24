@@ -1,0 +1,15 @@
+#!/bin/bash
+
+clear
+DIR=$1
+
+if [ $DIR -eq "" ]; then
+    echo -e "Se requiere el nombre del directorio como parámetro."
+else
+    echo -e "Directorio a comprobar: " $DIR
+    if [ -d $DIR ]; then
+	echo "Existe: " $DIR
+    else
+	echo "No existe: " $DIR
+    fi
+fi

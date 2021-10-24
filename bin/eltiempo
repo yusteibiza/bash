@@ -1,0 +1,12 @@
+#!/bin/bash
+
+clear
+
+if [ ! -z "$1" ]
+then
+    resize -s 41 125 > /dev/null
+    curl wttr.in/$1
+    read
+else
+    echo -e "\n -No se ha indicado la ciudad...\n"
+fi

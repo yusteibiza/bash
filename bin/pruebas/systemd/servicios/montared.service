@@ -1,0 +1,17 @@
+[Unit]
+Description=Montar unidades de red
+After=networking.target
+
+[Service]
+#User=root
+#Group=user
+#RuntimeDirectory=/mnt
+#RuntimeDirectoryMode=0700
+#RuntimeDirectoryPreserve=yes
+User=root
+Type=simple
+WorkingDirectory=/yuste/bin
+ExecStart=/yuste/bin/montared.sh //192.168.1.2/backups /yuste/media/puesto1/backups /yuste/claves/samba/smb.cred 2.1
+
+[Install]
+WantedBy=multi-user.target

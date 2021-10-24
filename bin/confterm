@@ -1,0 +1,65 @@
+#! /bin/bash
+
+#******************************************************************
+# Archivo de configuración del entorno de Linux modificado por mí *
+#******************************************************************
+
+COWSAY=$(which cowsay | cut -d" " -f2)
+
+Prompt()
+{
+    if [ $(whoami) != "root" ]; then
+	export PS1="\n\[$(tput bold)\]\[\033[38;5;0m\]\[\033[48;5;7m\]\d, \[$(tput sgr0)\]\[$(tput sgr0)\]\[$(tput bold)\]\[\033[48;5;26m\] \t\[$(tput sgr0)\]\n└─> \[$(tput sgr0)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h \[$(tput sgr0)\]\[\033[0;36;25m\][\W]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+    else
+	export PS1="\n\[$(tput bold)\]\[\033[38;5;0m\]\[\033[48;5;7m\]\d, \[$(tput sgr0)\]\[$(tput sgr0)\]\[$(tput bold)\]\[\033[48;5;26m\] \t\[$(tput sgr0)\]\n└─> \[$(tput sgr0)\]\[\033[1;31m\]\u\[$(tput sgr0)\]@\h \[$(tput sgr0)\]\[\033[0;36;25m\][\W]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+    fi
+}
+
+Prompt2()
+{
+    if [[ $(whoami) == "root" ]]
+    then
+        export PS1="\n\[\e[0;38;5;118m\]┏━━━━┫\[\e[1;48;5;9;1;38;5;16m\] \u@\h \[\e[0;38;5;118m\]┣━━┫\[\e[1;48;5;118;1;38;5;16m\] \W \[\e[0;38;5;118m\]┣━━━━━\n┃\n┗━━\$>\[\e[0m\] "
+    else
+        export PS1="\n\[\e[0;38;5;118m\]┏━━━━┫\[\e[1;48;5;118;1;38;5;16m\] \u@\h \[\e[0;38;5;118m\]┣━━┫\[\e[1;48;5;118;1;38;5;16m\] \W \[\e[0;38;5;118m\]┣━━━━━\n┃\n┗━━\$>\[\e[0m\] "
+    fi
+}
+
+PromptDefecto()
+{
+    export PS1="\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] "
+}
+
+Aliases()
+{
+    alias l='ls -lhaF --color'
+    alias dir=l
+    alias ver='uname -a | cut -d " " -f1,3,13,15'
+    alias cls='clear'
+    alias cd..='cd ..'
+    alias ..='cd ..'
+    alias chkdsk='e2fsck'
+    alias del='rm'
+    alias erase='rm'
+    alias deltree='rm -r'
+}
+
+VariablesEntorno()
+{
+    export QT_QPA_PLATFORMTHEME=qt5ct
+    export PATH=$PATH:/yuste/bin
+    export TERM=xterm-256color
+    #export LANG=es_ES.UTF-8
+    #export KEYMAP=es
+    #export DISPLAY=192.168.1.113:0
+    #export FONT=Uni3-TerminusBold22x11.psf.gz
+    #export EDITOR=mcedit
+}
+
+Aliases
+VariablesEntorno
+
+[[ -f "$COWSAY" ]] && echo -e "\n" && $COWSAY "¡¡¡ Hola, $USER !!!" && echo -e "\n" || echo -e "\n!!! Hola, $USER !!!\n"
+[[ "$SHELL" == "/bin/bash" || "$SHELL" == "/usr/bin/bash" ]] && Prompt2
+$(which setleds) -D +num 2> /dev/null
+setfont /yuste/fuentes_consola/Uni3-TerminusBold22x11.psf.gz > /dev/null 2> /dev/null

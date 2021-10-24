@@ -1,0 +1,35 @@
+#!/bin/bash
+
+OPCION=1
+
+function menu()
+{
+    clear
+    echo -e "\n 1- Información sistema"
+    echo -e " 2- Información cpu"
+    echo -e " 3- Terminar y salir"
+    echo -e "\n"
+    read -p " Elija una opción .: " OPCION
+    opcionelegida
+}
+
+function opcionelegida()
+{
+    echo -e "\n"
+
+    case $OPCION in
+        1) inxi -b
+	;;
+        2) lscpu
+	;;
+	[3,q,Q]) exit
+	;;
+        *) menu
+	;;
+    esac
+
+    read
+    menu
+}
+
+menu

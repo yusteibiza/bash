@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function DibujarMenu {
+    clear
+    echo -e " \n 1. Información de memoria"
+    echo -e " 2. Información del procesador"
+    echo -e " -----------------------------"
+    echo -e " 3. Terminar\n"
+}
+
+function CogerOpcion {
+    while true
+    do
+	DibujarMenu
+	read -p " - Escoja una opción .: " OPCION
+	clear
+	case $OPCION in
+	    1)
+		free -mh
+	    ;;
+	    2)
+		lshw -c cpu
+	    ;;
+	    [3,q,Q])
+		exit
+	    ;;
+	    *)
+		CogerOpcion
+	    ;;
+	esac
+	echo -e "\n"
+	read -p " - Pulse una tecla... "
+    done
+}
+
+CogerOpcion

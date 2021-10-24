@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DISCO=$1
+DESTINO=$2
+COMANDO=$(which smartctl)
+
+[[ -z $COMANDO ]] && echo -e "\n - No están instaladas las smart tools...\n" && exit
+[[ -z $DISCO ]] && echo -e "\n - No se ha especificado el diso...\n" && exit
+[[ ! -e $DISCO ]] && echo -e "\n - El diso espeficicado no existe...\n" && exit
+
+if [ ! -z $DESTINO ]
+then
+    sudo $COMANDO -a $DISCO | tail -n+5 | head -n+14 >> $DESTINO
+    echo -e "\n\n" >> $DESTINO
+    echo -e "\n - Información guardada en -> $DESTINO\n"
+else
+    sudo $COMANDO -a $DISCO | tail -n+5 | head -n+14
+fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+clear
+
+if [ ! -z $DISPLAY="" ]
+then 
+    resize -s 45 115 > /dev/null
+fi
+
+echo -e "-Información del equipo: $HOSTNAME\n"
+#screenfetch
+neofetch
+echo -e "\n"
+inxi -F
+echo -e "\n"
+read -p "-Pulse intro para cerrar..."
+
